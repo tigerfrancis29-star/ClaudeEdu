@@ -146,11 +146,16 @@ def parse_receipt(file_bytes: bytes, content_type: str) -> dict:
     else:
         parsed = raw_content
 
-    # 필수 필드 누락 검증
-    if not parsed.get("store_name") or not parsed.get("total_amount"):
+    # total_amount가 아예 없거나 숫자가 아닌 경우만 실패 처리
+    total = parsed.get("total_amount")
+    if total is None or not isinstance(total, (int, float)):
         raise ValueError(
-            f"OCR 파싱 결과에 필수 필드(store_name, total_amount)가 없습니다. 원본: {parsed}"
+            f"OCR 파싱 결과에서 결제 금액을 추출할 수 없습니다. 원본: {parsed}"
         )
+
+    # store_name이 비어 있으면 기본값 사용 (영수증에 상호명이 없는 경우)
+    if not parsed.get("store_name"):
+        parsed["store_name"] = "알 수 없음"
 
     # 선택 필드 기본값 보정
     parsed.setdefault("subtotal", parsed.get("total_amount", 0))
