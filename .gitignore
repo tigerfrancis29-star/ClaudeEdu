@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# 환경변수 (절대 커밋 금지)
+.env
+.env.local
+.env.*.local
+
+# 업로드 파일
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# 데이터 파일 (운영 데이터는 커밋 제외)
+backend/data/expenses.json
+
+# Node.js
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# 훅 상태 파일 (자동 생성)
+.claude/.prd_sync_state
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

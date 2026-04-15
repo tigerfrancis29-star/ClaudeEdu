@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python C:/claude_ocr_1day/.claude/hooks/sync_prd.py",
+            "timeout": 10,
+            "statusMessage": "PRD 동기화 확인 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
